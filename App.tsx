@@ -1,20 +1,27 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import 'react-native-gesture-handler';
+
+import { useFonts, Roboto_300Light, Roboto_900Black } from '@expo-google-fonts/roboto';
+import { Routes } from '@src/routes';
+import theme from '@styles/theme';
+import AppLoading from 'expo-app-loading';
+import { ThemeProvider } from 'styled-components';
+import { HeroProvider } from '@src/hooks/hero';
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    Roboto_300Light,
+    Roboto_900Black,
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <ThemeProvider theme={theme}>
+      <HeroProvider>
+        <Routes />
+      </HeroProvider>
+    </ThemeProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
