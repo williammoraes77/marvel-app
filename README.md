@@ -26,7 +26,7 @@ npm install
 - Acesse o site [Marvel API](https://developer.marvel.com/)
 - Crie uma conta
 - Copie a ``MARVEL_PUBLIC_KEY`` e a ``MARVEL_PRIVATE_KEY``
-- Criar o arquivo ".env"
+- Criar o arquivo ``.env`` com base no arquivo ``.env.example``
 - Insira a ``MARVEL_PUBLIC_KEY`` e a ``MARVEL_PRIVATE_KEY`` no arquivo ".env"
 
 ### Passo 4: Executando os projetos nos emuladores:
