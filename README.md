@@ -21,9 +21,9 @@ yarn install
 npm install
 ```
 
-### Passo 3: Configurando APP_KEY:
-##### Expo
-- Aceese o site [Marvel API](https://developer.marvel.com/)
+### Passo 3: Configurando as chaves necessárias:
+##### KEYS
+- Acesse o site [Marvel API](https://developer.marvel.com/)
 - Crie uma conta
 - Copie a ``MARVEL_PUBLIC_KEY`` e a ``MARVEL_PRIVATE_KEY``
 - Criar o arquivo ".env"
