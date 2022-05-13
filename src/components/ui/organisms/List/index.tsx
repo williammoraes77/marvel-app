@@ -7,8 +7,6 @@ import { Container, Separator, ModalContent, Paginate, FirstButton, FirstButtonT
 import { Card } from '@components/ui/molecules/Card';
 
 import {useNavigation} from '@react-navigation/native';
-
-import Modal from "react-native-modal";
 import theme from '@src/styles/theme';
 import { getBottomSpace } from 'react-native-iphone-x-helper';
 
@@ -28,7 +26,7 @@ export interface ItemProps {
 export function List() {
 
   const {navigate} = useNavigation();
-  const [isModalVisible, setModalVisible] = useState(false);
+
   const windowHeight = Dimensions.get('window').height;
 
   const bottomSheetRef = useRef<BottomSheet>(null);
@@ -88,15 +86,6 @@ export function List() {
         hero.series && <CharacterData name={hero.name} comics={hero.comics} series={hero.series} events={hero.events}/>
       }
     </BottomSheet>
-
-
-      {/* <Modal isVisible={isModalVisible} swipeDirection='down' style={{ justifyContent: 'flex-end' }}>
-        <ModalContent>
-          <Text>Hello!</Text>
-
-          <Button title="Hide modal" onPress={handleToggleModal} />
-        </ModalContent>
-      </Modal> */}
 
     </>
   );

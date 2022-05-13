@@ -14,7 +14,7 @@ export const Container = styled.View`
 `;
 
 export const ImageContent = styled.View`
-  flex: 3;
+  flex: 1;
   border-radius: ${RFValue(2)}px;
   align-items: center;
   justify-content: center;
@@ -26,7 +26,7 @@ export const ImageData = styled.Image`
 
 `;
 export const FooterContent = styled.View`
-  flex: 2;
+  flex: 1;
 `;
 
 export const CharacterTitleContent = styled.View`

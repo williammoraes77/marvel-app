@@ -34,6 +34,11 @@ export async function getHero(character_id: number) {
         method: 'GET',
         offset: 0,
       }),
+      await httpClient({
+        url: `characters/${character_id}/events`,
+        method: 'GET',
+        offset: 0,
+      }),
     ]);
 
     return responses;

@@ -45,7 +45,7 @@ export const PageButtonSelected = styled.TouchableOpacity`
   border-radius: ${RFValue(15)}px;
   align-items: center;
   justify-content: center;
-  background-color: ${({ theme }) => theme.colors.background};
+  background-color: #ED181E;
 `;
 
 export const NumericButtonContent = styled.View`

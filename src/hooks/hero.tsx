@@ -14,6 +14,7 @@ export interface ComicProps {
 }
 export interface SeriesProps {
   title: string;
+  description: string;
   thumbnail: {
     path: string;
     extension: string;
@@ -21,7 +22,14 @@ export interface SeriesProps {
 }
 
 export interface EventsProps {
-  name: string;
+  title: string;
+  startYear: string;
+  endYear: string;
+  modified: string;
+  thumbnail: {
+    path: string;
+    extension: string;
+  };
 }
 export interface HeroProps {
   id: number;
@@ -32,7 +40,7 @@ export interface HeroProps {
   };
   comics: ComicProps;
   series: SeriesProps;
-  events: SeriesProps;
+  events: EventsProps;
 }
 
 interface IHeroContextData {
@@ -68,6 +76,7 @@ function HeroProvider({ children }: HeroProviderProps) {
         ...response[0].data.data.results[0],
         comics: [...response[1].data.data.results],
         series: [...response[2].data.data.results],
+        events: [...response[3].data.data.results],
       };
 
       setHero(heroParsed);

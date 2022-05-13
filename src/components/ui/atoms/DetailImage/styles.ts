@@ -6,6 +6,6 @@ export const Container = styled.Image.attrs({
 })`
   width: ${RFValue(65)}px;
   height: ${RFValue(65)}px;
-  border-radius: ${RFValue(35)}px;
+  border-radius: ${RFValue(10)}px;
 `;
 

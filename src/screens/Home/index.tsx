@@ -49,7 +49,7 @@ export function Home() {
       <Content>
         <WrapperInput>
           <Input
-             placeholder="Busque pelo nome do personagem"
+             placeholder="Search by character name"
              placeholderTextColor={theme.colors.card}
              icon="search"
              handlePress={handleGetCharacters}

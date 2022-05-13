@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 import { FlatList } from 'react-native';
-import { Props } from './';
+import { Props } from '.';
 
 export const Container = styled(FlatList as new () => FlatList<Props>).attrs({})`
   flex: 1;

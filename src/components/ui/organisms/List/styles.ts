@@ -22,12 +22,6 @@ export const Separator = styled.View`
   margin: ${RFValue(10)}px 0;
 `;
 
-export const ModalContent = styled.View`
-  background-color: #000;
-  border-top-left-radius: ${RFValue(20)}px;
-  border-top-right-radius: ${RFValue(20)}px;
-`;
-
 export const Paginate = styled.View`
   /* position: absolute;
   bottom: ${RFValue(0)}px; */

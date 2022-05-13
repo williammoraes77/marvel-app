@@ -3,10 +3,10 @@ import { View } from 'react-native';
 
 import { Container, Separator } from './styles';
 
-import { Comic } from '@src/components/ui/molecules/Comic';
+import { DetailCard } from '@src/components/ui/molecules/DetailCard';
 import { ComicProps } from '@src/hooks/hero';
 
-export function Comics({ data }: ComicProps) {
+export function Details({ data }: ComicProps) {
   return (
     <View style={{ flex: 1 }}>
       <Container
@@ -15,7 +15,7 @@ export function Comics({ data }: ComicProps) {
         showsHorizontalScrollIndicator={false}
         ItemSeparatorComponent={() => <Separator />}
         renderItem={({ item }: { item: ComicProps }) => (
-          <Comic
+          <DetailCard
             img={`${item.thumbnail.path}/portrait_xlarge.${item.thumbnail.extension}`}
             title={item.title}
           />
