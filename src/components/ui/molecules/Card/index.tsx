@@ -12,11 +12,12 @@ import { SubTitle } from '../../atoms/SubTitle';
 type CardProps = {
   img_url: string;
   title: string;
-  comicText: string;
+  series: any;
+  events: string;
   handlePress: () => void;
 };
 
-export function Card({ img_url, title, comicText, handlePress }: CardProps) {
+export function Card({ img_url, title, series, events,  handlePress }: CardProps) {
   return (
     <Container style={styles.shadow} onPress={handlePress}>
       <DataContent>
@@ -24,15 +25,13 @@ export function Card({ img_url, title, comicText, handlePress }: CardProps) {
         <Title title={title} />
         <SeriesContent>
           <SubTitle data="Series: "/>
-          <SeriesWrapper>
-            <DetailsText data={comicText}/>
-            <DetailsText data={comicText}/>
-            <DetailsText data={comicText}/>
+          <SeriesWrapper horizontal>
+            <DetailsText data={series}/>
           </SeriesWrapper>
         </SeriesContent>
         <EventsContent>
           <SubTitle data="Eventos: "/>
-          <DetailsText data={comicText}/>
+          <DetailsText data={events}/>
         </EventsContent>
       </DataContent>
       <ImageContent>

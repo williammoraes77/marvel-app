@@ -12,6 +12,17 @@ export interface ComicProps {
     extension: string;
   };
 }
+export interface SeriesProps {
+  title: string;
+  thumbnail: {
+    path: string;
+    extension: string;
+  };
+}
+
+export interface EventsProps {
+  name: string;
+}
 export interface HeroProps {
   id: number;
   name: string;
@@ -20,6 +31,8 @@ export interface HeroProps {
     extension: string;
   };
   comics: ComicProps;
+  series: SeriesProps;
+  events: SeriesProps;
 }
 
 interface IHeroContextData {
@@ -28,6 +41,8 @@ interface IHeroContextData {
   loadHeroes(name?: string): void;
   loadHero(character_id: number): void;
   clearHero(): void;
+  handlePaginate(num: number): void;
+  paginate: number;
 }
 
 const HeroContext = createContext({} as IHeroContextData);
@@ -35,10 +50,11 @@ const HeroContext = createContext({} as IHeroContextData);
 function HeroProvider({ children }: HeroProviderProps) {
   const [hero, setHero] = useState<HeroProps>({} as HeroProps);
   const [heroes, setHeroes] = useState<HeroProps[]>([]);
+  const [paginate, setPaginate] = useState(0 || null);
 
   async function loadHeroes(name: string) {
     try {
-      const response = await getHeroes(name);
+      const response = await getHeroes(name, paginate ? paginate : 0);
 
       setHeroes(response.data.data.results);
     } catch (error) {}
@@ -47,18 +63,24 @@ function HeroProvider({ children }: HeroProviderProps) {
   async function loadHero(character_id: number) {
     try {
       const response = await getHero(character_id);
-
+      // console.log(response[2].data.data.results);
       const heroParsed = {
         ...response[0].data.data.results[0],
         comics: [...response[1].data.data.results],
+        series: [...response[2].data.data.results],
       };
 
       setHero(heroParsed);
+
     } catch (error) {}
   }
 
   function clearHero() {
     setHero({} as HeroProps);
+  }
+
+  function handlePaginate(num: number){
+    setPaginate(num);
   }
 
   return (
@@ -69,6 +91,8 @@ function HeroProvider({ children }: HeroProviderProps) {
         loadHeroes,
         loadHero,
         clearHero,
+        handlePaginate,
+        paginate,
       }}
     >
       {children}

@@ -26,7 +26,7 @@ export const SeriesContent = styled.View`
   margin-top: ${RFValue(6)}px;
 `;
 
-export const SeriesWrapper = styled.View`
+export const SeriesWrapper = styled.ScrollView`
   flex-direction: row;
 `;
 

@@ -1,11 +1,12 @@
 import httpClient from '@services/client/httpClient';
 
-export async function getHeroes(name: string) {
+export async function getHeroes(nameStartsWith: string, offset:number) {
   try {
-    const params = name ? { name } : {};
+    const params = nameStartsWith ? { nameStartsWith } : {};
     const response = await httpClient({
       url: 'characters',
       method: 'GET',
+      offset,
       params,
     });
 
@@ -21,10 +22,17 @@ export async function getHero(character_id: number) {
       await httpClient({
         url: `characters/${character_id}`,
         method: 'GET',
+        offset: 0,
       }),
       await httpClient({
         url: `characters/${character_id}/comics`,
         method: 'GET',
+        offset: 0,
+      }),
+      await httpClient({
+        url: `characters/${character_id}/series`,
+        method: 'GET',
+        offset: 0,
       }),
     ]);
 

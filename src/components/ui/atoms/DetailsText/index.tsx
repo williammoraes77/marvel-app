@@ -1,17 +1,26 @@
 import React from 'react';
+import {ScrollView} from 'react-native';
+
+import { SeriesProps } from '@src/hooks/hero';
 
 import {
-  Title
+  Title,Container
 } from './styles';
 
 interface Props{
-  data: string;
+  data: any;
 }
 
-export function DetailsText({data}:Props){
+export function DetailsText({data}:any | null){
+
   return (
-    <Title>
-      {data}
-    </Title>
+    <ScrollView>
+      {
+        data.items.map((item, index) => (
+            index < 3 && (<Title key={index} style={{ color: '#000' }}>{item.name}</Title>)
+        ))
+      }
+    </ScrollView>
+
   );
 }

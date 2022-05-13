@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import BottomSheet from '@gorhom/bottom-sheet';
 
-import { Container, Separator, ModalContent } from './styles';
+import { Container, Separator, ModalContent, Paginate, FirstButton, FirstButtonText, ContainerSmall } from './styles';
 
 import { Card } from '@components/ui/molecules/Card';
 
@@ -16,6 +16,8 @@ import { Detail } from '../../molecules/Detail';
 
 import { useHero, HeroProps } from '@src/hooks/hero';
 import { CharacterData } from '../../templates/CharacterData';
+import { Series } from '../Series';
+import { SmallCard } from '../../molecules/SmallCard';
 
 export interface ItemProps {
   id: string;
@@ -27,11 +29,11 @@ export function List() {
 
   const {navigate} = useNavigation();
   const [isModalVisible, setModalVisible] = useState(false);
-  // const [hero, setHero] = useState(null);
+  const windowHeight = Dimensions.get('window').height;
 
   const bottomSheetRef = useRef<BottomSheet>(null);
 
-  const { hero, heroes, loadHero } = useHero();
+  const { hero, heroes, loadHero, loadHeroes, handlePaginate, paginate } = useHero();
 
   function handleDetaile(character_id: string){
     navigate('Detail', {character_id});
@@ -44,27 +46,47 @@ export function List() {
   useEffect(() => {
     if (hero && hero?.id && hero?.id !== null) {
       bottomSheetRef.current?.expand();
-      console.log('_______________________');
-      console.log(hero);
+      handlePaginate(null);
     }
   }, [hero]);
 
   return (
     <>
-    <Container
-      data={heroes}
-      keyExtractor={(item: HeroProps) => item.id}
-      ItemSeparatorComponent={() => <Separator />}
-      renderItem={({ item }: { item: HeroProps }) => ( <Card title={item.name} img_url={`${item.thumbnail.path}/portrait_xlarge.${item.thumbnail.extension}`} comicText={item.name} handlePress={() => handleCharacter(item.id)}/>)}
-    />
+    {
+      windowHeight > 600 ? (
+        <Container
+          data={heroes}
+          keyExtractor={(item: HeroProps) => item.id}
+          ItemSeparatorComponent={() => <Separator />}
+          renderItem={({ item }: { item: HeroProps }) => ( <Card title={item.name} img_url={`${item.thumbnail.path}/portrait_xlarge.${item.thumbnail.extension}`} series={item.series} events={item.events} handlePress={() => handleCharacter(item.id)}/>)}
+        />
+      ) : (
+        <ContainerSmall
+          data={heroes}
+          numColumns={2}
+          keyExtractor={(item: HeroProps) => item.id}
+          ItemSeparatorComponent={() => <Separator />}
+          renderItem={({ item }: { item: HeroProps }) => (
+            <SmallCard
+              title={item.name}
+              img_url={`${item.thumbnail.path}/portrait_xlarge.${item.thumbnail.extension}`}
+              handlePress={() => handleCharacter(item.id)}
+            />
+          )}
+        />
+      )
+    }
+
 
     <BottomSheet
       ref={bottomSheetRef}
-      snapPoints={[1, 780]}
+      snapPoints={[1, 880]}
       backgroundStyle={styles.modal}
       handleIndicatorStyle={styles.indicator}
     >
-      <CharacterData name={hero.name} comics={hero.comics} />
+      {
+        hero.series && <CharacterData name={hero.name} comics={hero.comics} series={hero.series} events={hero.events}/>
+      }
     </BottomSheet>
 
 
