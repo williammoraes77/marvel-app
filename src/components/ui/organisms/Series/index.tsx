@@ -23,7 +23,7 @@ export function Series({ data }: any | null) {
             title={item.title}
             startYear={item.startYear}
             endYear={item.endYear}
-            modified={format(new Date(item.modified), "MMMM do, yyyy H:mma")}
+            modified={item.modified}
             type="Serie"
           />
         )}
