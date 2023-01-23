@@ -1,17 +1,17 @@
 # :rocket: Sobre o projeto
 
-Esse projeto foi desenvolvido com a finalidade colocar em pratica novos conhecimentos.
+Esse projeto foi desenvolvido com a finalidade colocar em prática novos conhecimentos.
 
-<p>O aplicativo traz uma lista de personagens na Marvel, o usuario pode filtrar pelo nome do persanagem e ao clicar no card, o app mostra informaçoes sobre series e eventos que o personagem participou.</p>
+<p>O aplicativo traz uma lista de personagens na Marvel, o usuário pode filtrar pelo nome do personagem e ao clicar no card, o app mostra informações sobre séries e eventos que o personagem participou.</p>
 
 <hr />
 
 ## Imagens
 
 <div align="center">
-  <img align="center" src="https://github.com/williammoraes77/ignite-teams/blob/main/assets/items1-dark.png" alt="Marvel app" height="300">
-  <img align="center" src="https://github.com/williammoraes77/ignite-teams/blob/main/assets/items2-dark.png" alt="Marvel app" height="300">
-  <img align="center" src="https://github.com/williammoraes77/ignite-teams/blob/main/assets/items2-light.png" alt="Marvel app" height="300">
+  <img align="center" src="https://github.com/williammoraes77/marvel-app-test/blob/master/assets/marvel-app1.jpeg" alt="Marvel app" height="400">
+  <img align="center" src="https://github.com/williammoraes77/marvel-app-test/blob/master/assets/marvel-app2.jpeg" alt="Marvel app" height="400">
+  <img align="center" src="https://github.com/williammoraes77/marvel-app-test/blob/master/assets/marvel-app3.jpeg" alt="Marvel app" height="400">
 
 </div>
 
