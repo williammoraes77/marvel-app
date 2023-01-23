@@ -42,6 +42,9 @@ export interface HeroProps {
   series: SeriesProps;
   events: EventsProps;
 }
+interface PaginateProps {
+  type: number;
+}
 
 interface IHeroContextData {
   hero: HeroProps;
@@ -58,7 +61,7 @@ const HeroContext = createContext({} as IHeroContextData);
 function HeroProvider({ children }: HeroProviderProps) {
   const [hero, setHero] = useState<HeroProps>({} as HeroProps);
   const [heroes, setHeroes] = useState<HeroProps[]>([]);
-  const [paginate, setPaginate] = useState(0 || null);
+  const [paginate, setPaginate] = useState<number>(0);
 
   async function loadHeroes(name: string) {
     try {
@@ -71,7 +74,7 @@ function HeroProvider({ children }: HeroProviderProps) {
   async function loadHero(character_id: number) {
     try {
       const response = await getHero(character_id);
-      // console.log(response[2].data.data.results);
+
       const heroParsed = {
         ...response[0].data.data.results[0],
         comics: [...response[1].data.data.results],
@@ -80,7 +83,6 @@ function HeroProvider({ children }: HeroProviderProps) {
       };
 
       setHero(heroParsed);
-
     } catch (error) {}
   }
 
@@ -88,7 +90,7 @@ function HeroProvider({ children }: HeroProviderProps) {
     setHero({} as HeroProps);
   }
 
-  function handlePaginate(num: number){
+  function handlePaginate(num: number) {
     setPaginate(num);
   }
 
@@ -116,4 +118,3 @@ function useHero() {
 }
 
 export { HeroProvider, useHero };
-

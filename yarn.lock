@@ -1854,6 +1854,11 @@
   dependencies:
     "@types/istanbul-lib-report" "*"
 
+"@types/js-md5@^0.7.0":
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/@types/js-md5/-/js-md5-0.7.0.tgz#44648b3c9b2d465056cc73f76c0df24d386e7e00"
+  integrity sha512-4mN02EhCni6MlvCUl9bpcbMfu7R3G+ac+J37b7gKCu3tWhZc5/Ya41T+2QNR2aFt6vnMe+uTa5rFQ+nT2kl6cA==
+
 "@types/json-schema@^7.0.9":
   version "7.0.11"
   resolved "https://registry.npmjs.org/@types/json-schema/-/json-schema-7.0.11.tgz"

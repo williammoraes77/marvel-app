@@ -1,6 +1,6 @@
 import httpClient from '@services/client/httpClient';
 
-export async function getHeroes(nameStartsWith: string, offset:number) {
+export async function getHeroes(nameStartsWith: string, offset: number) {
   try {
     const params = nameStartsWith ? { nameStartsWith } : {};
     const response = await httpClient({
@@ -46,4 +46,3 @@ export async function getHero(character_id: number) {
     throw error;
   }
 }
-

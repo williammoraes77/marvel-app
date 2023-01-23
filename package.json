@@ -14,6 +14,7 @@
     "@gorhom/bottom-sheet": "^4",
     "@react-navigation/native": "^6.0.10",
     "@react-navigation/native-stack": "^6.6.2",
+    "@types/js-md5": "^0.7.0",
     "axios": "^0.27.2",
     "babel-plugin-inline-dotenv": "^1.7.0",
     "date-fns": "^2.28.0",

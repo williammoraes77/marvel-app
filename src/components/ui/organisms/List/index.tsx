@@ -2,11 +2,19 @@ import React, { useState, useRef, useEffect } from 'react';
 import { StyleSheet, Dimensions } from 'react-native';
 import BottomSheet from '@gorhom/bottom-sheet';
 
-import { Container, Separator, ModalContent, Paginate, FirstButton, FirstButtonText, ContainerSmall } from './styles';
+import {
+  Container,
+  Separator,
+  ModalContent,
+  Paginate,
+  FirstButton,
+  FirstButtonText,
+  ContainerSmall,
+} from './styles';
 
 import { Card } from '@components/ui/molecules/Card';
 
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import theme from '@src/styles/theme';
 import { getBottomSpace } from 'react-native-iphone-x-helper';
 
@@ -24,18 +32,13 @@ export interface ItemProps {
 }
 
 export function List() {
-
-  const {navigate} = useNavigation();
+  const { navigate } = useNavigation();
 
   const windowHeight = Dimensions.get('window').height;
 
   const bottomSheetRef = useRef<BottomSheet>(null);
 
   const { hero, heroes, loadHero, loadHeroes, handlePaginate, paginate } = useHero();
-
-  function handleDetaile(character_id: string){
-    navigate('Detail', {character_id});
-  }
 
   function handleCharacter(character_id: number) {
     loadHero(character_id);
@@ -44,19 +47,26 @@ export function List() {
   useEffect(() => {
     if (hero && hero?.id && hero?.id !== null) {
       bottomSheetRef.current?.expand();
-      handlePaginate(null);
+      handlePaginate(0);
     }
   }, [hero]);
 
   return (
     <>
-    {
-      windowHeight > 600 ? (
+      {windowHeight > 600 ? (
         <Container
           data={heroes}
           keyExtractor={(item: HeroProps) => item.id}
           ItemSeparatorComponent={() => <Separator />}
-          renderItem={({ item }: { item: HeroProps }) => ( <Card title={item.name} img_url={`${item.thumbnail.path}/portrait_xlarge.${item.thumbnail.extension}`} series={item.series} events={item.events} handlePress={() => handleCharacter(item.id)}/>)}
+          renderItem={({ item }: { item: HeroProps }) => (
+            <Card
+              title={item.name}
+              img_url={`${item.thumbnail.path}/portrait_xlarge.${item.thumbnail.extension}`}
+              series={item.series}
+              events={item.events}
+              handlePress={() => handleCharacter(item.id)}
+            />
+          )}
         />
       ) : (
         <ContainerSmall
@@ -72,25 +82,26 @@ export function List() {
             />
           )}
         />
-      )
-    }
+      )}
 
-
-    <BottomSheet
-      ref={bottomSheetRef}
-      snapPoints={[1, 880]}
-      backgroundStyle={styles.modal}
-      handleIndicatorStyle={styles.indicator}
-    >
-      {
-        hero.series && <CharacterData name={hero.name} comics={hero.comics} series={hero.series} events={hero.events}/>
-      }
-    </BottomSheet>
-
+      <BottomSheet
+        ref={bottomSheetRef}
+        snapPoints={[1, 880]}
+        backgroundStyle={styles.modal}
+        handleIndicatorStyle={styles.indicator}
+      >
+        {hero.series && (
+          <CharacterData
+            name={hero.name}
+            comics={hero.comics}
+            series={hero.series}
+            events={hero.events}
+          />
+        )}
+      </BottomSheet>
     </>
   );
 }
-
 
 const styles = StyleSheet.create({
   modal: {
@@ -100,5 +111,5 @@ const styles = StyleSheet.create({
   indicator: {
     backgroundColor: theme.colors.card,
     width: 60,
-  }
+  },
 });

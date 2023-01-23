@@ -23,17 +23,17 @@ export default async function httpClient({
   try {
     const timestamp = Number(new Date());
     const hash = md5.create();
-    hash.update(timestamp + MARVEL_PRIVATE_KEY + MARVEL_PUBLIC_KEY);
-    // 'https://gateway.marvel.com:443/v1/public/characters?limit=10&offset=10&apikey=766ff2f0eef25bf9e7513fd0997b995b'
+    hash.update(timestamp + MARVEL_PRIVATE_KEY! + MARVEL_PUBLIC_KEY);
+
     return await axios({
       url: `${APP_URL}/${url}?limit=10&offset=${offset}&ts=${timestamp}&apikey=${MARVEL_PUBLIC_KEY}&hash=${hash.hex()}`,
-      // url: `${APP_URL}/${url}?ts=${timestamp}&apikey=${MARVEL_PUBLIC_KEY}&hash=${hash.hex()}`,
+
       method,
       data,
       params,
     });
   } catch (error) {
+    // console.log(error);
     throw error;
   }
 }
-

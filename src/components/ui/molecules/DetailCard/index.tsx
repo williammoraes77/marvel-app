@@ -1,10 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from 'react-native';
 
-import { Container, ImageContainer, ThumbContainer, ThumbImage, Title, SubTitle, ModalContent, RowContent } from './styles';
+import {
+  Container,
+  ImageContainer,
+  ThumbContainer,
+  ThumbImage,
+  Title,
+  SubTitle,
+  ModalContent,
+  RowContent,
+} from './styles';
 
 import { DetailImage } from '@src/components/ui/atoms/DetailImage';
-import Modal from "react-native-modal";
+import Modal from 'react-native-modal';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { Image } from '../../atoms/Image';
 
@@ -22,9 +31,7 @@ export function DetailCard({ img, title, startYear, endYear, modified, type, des
   const [visible, setVisible] = useState(false);
   const [isModalVisible, setModalVisible] = useState(false);
 
-  // console.log(type[0]);
-
-  function handleToggleModal(){
+  function handleToggleModal() {
     setModalVisible(!isModalVisible);
   }
 
@@ -38,60 +45,55 @@ export function DetailCard({ img, title, startYear, endYear, modified, type, des
 
   return (
     <>
-    <Container onPress={handleToggleModal}>
+      <Container onPress={handleToggleModal}>
         <ImageContainer>
           <DetailImage img_url={img} />
         </ImageContainer>
         <Title numberOfLines={1}>{title}</Title>
-    </Container>
+      </Container>
 
-     <Modal isVisible={isModalVisible}>
+      <Modal isVisible={isModalVisible}>
         <ModalContent>
           <ThumbContainer>
-            <ThumbImage source={{uri: img}}/>
+            <ThumbImage source={{ uri: img }} />
           </ThumbContainer>
-          <RowContent style={{alignItems: 'center', justifyContent: 'center', marginBottom: RFValue(10)}}>
-            <SubTitle style={{fontSize: RFValue(15)}}>{title}</SubTitle>
+          <RowContent
+            style={{ alignItems: 'center', justifyContent: 'center', marginBottom: RFValue(10) }}
+          >
+            <SubTitle style={{ fontSize: RFValue(15) }}>{title}</SubTitle>
           </RowContent>
-          {
-            type === 'Serie' && (
-              <>
-                <RowContent>
+          {type === 'Serie' && (
+            <>
+              <RowContent>
                 <Title>Type:</Title>
                 <SubTitle>{type}</SubTitle>
-                </RowContent>
-                <RowContent>
-                  <Title>Start Year:</Title>
-                  <SubTitle>{startYear}</SubTitle>
-                </RowContent>
-                <RowContent>
-                  <Title>End Year:</Title>
-                  <SubTitle>{endYear}</SubTitle>
-                </RowContent>
-                <RowContent>
-                  <Title>Modified:</Title>
-                  <SubTitle>{modified}</SubTitle>
-                </RowContent>
-              </>
-            )
-          }
+              </RowContent>
+              <RowContent>
+                <Title>Start Year:</Title>
+                <SubTitle>{startYear}</SubTitle>
+              </RowContent>
+              <RowContent>
+                <Title>End Year:</Title>
+                <SubTitle>{endYear}</SubTitle>
+              </RowContent>
+              <RowContent>
+                <Title>Modified:</Title>
+                <SubTitle>{modified}</SubTitle>
+              </RowContent>
+            </>
+          )}
 
-          {
-            type === 'Event' && (
-              <>
-                <RowContent>
-                  <SubTitle style={{textAlign: 'justify', lineHeight: 18}}>{description}</SubTitle>
-                </RowContent>
-
-              </>
-            )
-          }
+          {type === 'Event' && (
+            <>
+              <RowContent>
+                <SubTitle style={{ textAlign: 'justify', lineHeight: 18 }}>{description}</SubTitle>
+              </RowContent>
+            </>
+          )}
 
           <Button title="Close" onPress={handleToggleModal} />
         </ModalContent>
       </Modal>
-
     </>
   );
 }
-

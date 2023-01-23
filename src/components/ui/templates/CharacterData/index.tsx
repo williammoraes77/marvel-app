@@ -16,7 +16,6 @@ import {
 import { CharacterTitle } from '@src/components/ui/atoms/CharacterTitle';
 import { LineDivision } from '@src/components/ui/atoms/LineDivision';
 import { CharacterSubTitle } from '@src/components/ui/atoms/CharacterSubTitle';
-import { Comics } from '@src/components/ui/organisms/Details';
 import { HeroProps, useHero } from '@src/hooks/hero';
 import { Series } from '../../organisms/Series';
 import { Events } from '../../organisms/Events';
@@ -40,30 +39,22 @@ export function CharacterData({ name, comics, series, events }: HeroProps) {
           <LineDivision />
         </LineDivisionContent>
         <CharacterSubTitleContent>
-          {/* <CharacterSubTitle subTitle="Series" />
-          <CharacterSubTitle subTitle="Eventos" /> */}
           <NavOptions>
-            <WrapperNavOptions
-              selected={select === 'series'}
-              onPress={() => setSelect('series')}>
-              <OptionNav selected={select === 'series'}><CharacterSubTitle subTitle="Series" /></OptionNav>
+            <WrapperNavOptions selected={select === 'series'} onPress={() => setSelect('series')}>
+              <OptionNav selected={select === 'series'}>
+                <CharacterSubTitle subTitle="Series" />
+              </OptionNav>
             </WrapperNavOptions>
-            <WrapperNavOptions
-              selected={select === 'events'}
-              onPress={() => setSelect('events')}>
-              <OptionNav selected={select === 'events'}><CharacterSubTitle subTitle="Events" /></OptionNav>
+            <WrapperNavOptions selected={select === 'events'} onPress={() => setSelect('events')}>
+              <OptionNav selected={select === 'events'}>
+                <CharacterSubTitle subTitle="Events" />
+              </OptionNav>
             </WrapperNavOptions>
-            </NavOptions>
+          </NavOptions>
         </CharacterSubTitleContent>
-        {/* <Comics data={comics} /> */}
-        {
-          select === 'series' && (<Series data={series} />)
-        }
-        {
-          select === 'events' && (<Events data={events} />)
-        }
+        {select === 'series' && <Series data={series} />}
+        {select === 'events' && <Events data={events} />}
       </FooterContent>
     </Container>
   );
 }
-

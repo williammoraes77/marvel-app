@@ -3,9 +3,10 @@ import 'react-native-gesture-handler';
 import { useFonts, Roboto_300Light, Roboto_900Black } from '@expo-google-fonts/roboto';
 import { Routes } from '@src/routes';
 import theme from '@styles/theme';
-import AppLoading from 'expo-app-loading';
+// import AppLoading from 'expo-app-loading';
 import { ThemeProvider } from 'styled-components';
 import { HeroProvider } from '@src/hooks/hero';
+import { ActivityIndicator } from 'react-native';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -14,7 +15,7 @@ export default function App() {
   });
 
   if (!fontsLoaded) {
-    return <AppLoading />;
+    return <ActivityIndicator />;
   }
 
   return (
